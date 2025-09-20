@@ -5,7 +5,7 @@ from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
 from .api.db import get_conn
 from .api.schemas import RunConfig, RunResult
-from .api.storage import ensure_bucket, presign_get, presign_put, S3_BUCKET
+from .api.storage import ensure_bucket, presign_get, presign_put, S3_BUCKET, is_s3_configured
 
 app = FastAPI(title="lab-kaggle-hub", version="0.1.0")
 
@@ -137,3 +137,4 @@ def get_artifact_url(artifact_id: str):
     return {"url": presign_get(key)}
 from .api import ui
 app.include_router(ui.router)
+
