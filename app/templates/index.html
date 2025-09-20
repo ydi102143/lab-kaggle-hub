@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Run List</title>
+</head>
+<body>
+  <h1>Runs</h1>
+  <table border="1">
+    <tr><th>Run ID</th><th>Status</th><th>Score</th><th>Created At</th></tr>
+    {% for run in runs %}
+    <tr>
+      <td><a href="/runs/{{ run.id }}">{{ run.id }}</a></td>
+      <td>{{ run.status }}</td>
+      <td>{{ run.score }}</td>
+      <td>{{ run.created_at }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

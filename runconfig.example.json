@@ -1,0 +1,27 @@
+{
+  "dataset_version": "v1",
+  "cv": {
+    "type": "StratifiedKFold",
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "model": {
+    "name": "lightgbm",
+    "params": {
+      "num_leaves": 63,
+      "learning_rate": 0.05,
+      "n_estimators": 2000
+    }
+  },
+  "preprocess": {
+    "impute": "median",
+    "scale": "none",
+    "encode": "target"
+  },
+  "optuna": {
+    "enabled": false
+  },
+  "metric": "auc",
+  "seed": 42
+}

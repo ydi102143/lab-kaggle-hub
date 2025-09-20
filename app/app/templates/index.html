@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Runs</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 24px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { padding: 8px 12px; border-bottom: 1px solid #ddd; text-align: left; }
+    th { background: #f6f7f9; }
+    a { color: #0b67ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>Runs (latest 20)</h1>
+  <table>
+    <tr><th>Run ID</th><th>Status</th><th>Score</th><th>Created At</th></tr>
+    {% for run in runs %}
+    <tr>
+      <td><a href="/runs/{{ run.id }}">{{ run.id }}</a></td>
+      <td>{{ run.status }}</td>
+      <td>{{ run.score if run.score is not none else "-" }}</td>
+      <td>{{ run.created_at }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

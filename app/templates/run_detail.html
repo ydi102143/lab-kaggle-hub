@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Run {{ run.id }}</title>
+</head>
+<body>
+  <h1>Run {{ run.id }}</h1>
+  <p>Status: {{ run.status }}</p>
+  <p>Score: {{ run.score }}</p>
+  <p>Metric: {{ run.project.metric if run.project else "-" }}</p>
+
+  <h2>Artifacts</h2>
+  <ul>
+    {% for art in run.artifacts %}
+      <li>{{ art.type }}: <a href="{{ art.path }}">{{ art.path }}</a></li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

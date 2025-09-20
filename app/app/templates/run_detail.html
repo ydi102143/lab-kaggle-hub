@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Run {{ run.id if run else "Not Found" }}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 24px; }
+    .meta { margin-bottom: 16px; }
+    code, pre { background: #f6f7f9; padding: 8px; border-radius: 6px; display: block; white-space: pre-wrap; }
+    table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+    th, td { padding: 8px 12px; border-bottom: 1px solid #ddd; text-align: left; }
+    th { background: #f6f7f9; }
+    a { color: #0b67ff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  {% if not run %}
+    <h1>Run not found</h1>
+  {% else %}
+    <h1>Run {{ run.id }}</h1>
+    <div class="meta">
+      <p><b>Status:</b> {{ run.status }} &nbsp; <b>Score:</b> {{ run.score if run.score is not none else "-" }}</p>
+      <p><b>Created:</b> {{ run.created_at }} &nbsp; <b>Finished:</b> {{ run.finished_at }}</p>
+    </div>
+
+    <h2>Params JSON</h2>
+    <pre>{{ run.params_json }}</pre>
+
+    <h2>CV JSON</h2>
+    <pre>{{ run.cv_json }}</pre>
+
+    <h2>Artifacts</h2>
+    <table>
+      <tr><th>Type</th><th>URI</th><th>Download</th><th>Created At</th></tr>
+      {% for a in artifacts %}
+      <tr>
+        <td>{{ a.type }}</td>
+        <td><code>{{ a.uri }}</code></td>
+        <td><a target="_blank" href="/artifacts/{{ a.id }}">presigned URL</a></td>
+        <td>{{ a.created_at }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+</body>
+</html>
